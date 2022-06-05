@@ -1,0 +1,45 @@
+{
+  "vue3.2": {
+    "scope": "vue",
+    "prefix": "vue3+",
+    "body": [
+      "<template>",
+      "  <el-container style=\"height: 100%\">",
+      "    <el-main class=\"panel\"> $TM_FILENAME_BASE </el-main>",
+      "  </el-container>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "// const { proxy } = getCurrentInstance()",
+      "// const _router = useRouter()",
+      "// const _route = useRoute()",
+      "</script>",
+      "",
+      "<style lang=\"scss\" scoped></style>"
+    ],
+    "description": "Vue3.2+"
+  },
+  "vue3.0": {
+    "scope": "vue",
+    "prefix": "vue3",
+    "body": [
+      "<template>",
+      "  <el-container style=\"height: 100%\">",
+      "    <el-main class=\"panel\"> edit </el-main>",
+      "  </el-container>",
+      "</template>",
+      "<script lang=\"ts\">",
+      "export default {",
+      "  setup() {",
+      "    // const { proxy } = getCurrentInstance()",
+      "    // const _router = useRouter()",
+      "    // const _route = useRoute()",
+      "    return {};",
+      "  }",
+      "};",
+      "</script>",
+      "<style lang=\"scss\" scoped></style>"
+    ],
+    "description": "Vue3.0"
+  }
+}

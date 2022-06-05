@@ -1,0 +1,36 @@
+::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 6px;
+  box-shadow: none;
+  background: rgba(144, 147, 153, 0.3); //将来改--el-xxx-xxxxx
+}
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: none;
+  border-radius: 6px;
+  background: rgba(127, 171, 255, 0.1);
+}
+// 默认分页右对齐
+.el-pagination {
+  justify-content: end;
+  padding: 10px 5px !important;
+}
+
+//修改iconpark的样式
+.i-icon {
+  display: flex;
+}
+
+//修改el-main 面板
+.panel {
+  background: var(--el-fill-color-blank);
+}
+.el-main {
+  --el-main-padding: 12px !important;
+}

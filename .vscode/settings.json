@@ -1,0 +1,5 @@
+{
+  "files.eol": "auto",
+  "prettier.endOfLine": "auto",
+  "cSpell.words": ["linebreak", "pinia"]
+}
