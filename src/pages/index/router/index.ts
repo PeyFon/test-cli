@@ -28,12 +28,12 @@ router.beforeEach(async (to, from, next) => {
     if (whiteList.includes(String(to.name))) {
       next();
     } else {
-      next({ path: "/login", query: { redirect: to.fullPath } }); // redirect逻辑待完善
+      next({ path: "/login", query: { redirect: to.fullPath } });
     }
   }
 });
 
 router.onError(error => {
-  console.log(error, "路由错误");
+  console.log("路由错误:", error);
 });
 export default router;

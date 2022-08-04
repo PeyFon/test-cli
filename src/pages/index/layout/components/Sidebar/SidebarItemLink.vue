@@ -1,10 +1,5 @@
 <template>
-  <a
-    v-if="isFrameUrl"
-    :href="props.route.meta.frameUrl"
-    target="_blank"
-    rel="noopener"
-  >
+  <a v-if="isFrameUrl" :href="url" target="_blank">
     <slot />
   </a>
   <template v-else>
@@ -23,10 +18,10 @@ const props = defineProps({
     type: Object as PropType<RouteRecordRaw>
   }
 });
-
+const url = ref<string>(props.route.meta?.frameUrl as string);
 const isFrameUrl = computed(() => {
   if (props.route?.meta?.frameUrl) {
-    return isExternal(props.route.meta.frameUrl);
+    return isExternal(url.value);
   } else {
     return false;
   }

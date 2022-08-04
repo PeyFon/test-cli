@@ -1,0 +1,17 @@
+import {AwingIoTAbstrationsReadWriteType,AwingIoTAbstrationsTagDataType,AwingIoTAbstrationsDataType} from '../type';
+import request from "@/requests/interface";
+import { useGlobalSettingStore } from "@/store";
+const ismock = useGlobalSettingStore().isMock;
+
+const GetPageList = (data:{GatewayAddress:string;GroupId?:number;TagId?:number;Name?:string;Address?:string;Location?:string;SurveyContent?:string;IsEnable?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IoT/tag-config/page-list",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const TagDataTypeSelector = ()=> {return request({url: "/IoT/tag-config/tag-data-type-selector",method:"post",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const CreateTag = (data:{gatewayAddress:string;groupId:number;name:string;inRules?:string;outRules?:string;unit?:string;address:string;readWrite:AwingIoTAbstrationsReadWriteType;valueDataType:AwingIoTAbstrationsTagDataType;ruleValueDataType:AwingIoTAbstrationsDataType;surveyContent?:string;location?:string;samplingRate:number;[key: string]: unknown;})=> {return request({url: "/IoT/tag-config/tag",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const UpdateTag = (data:{Id:number;_body:{gatewayAddress:string;name:string;inRules?:string;outRules?:string;unit?:string;address:string;readWrite:AwingIoTAbstrationsReadWriteType;valueDataType:AwingIoTAbstrationsTagDataType;ruleValueDataType:AwingIoTAbstrationsDataType;samplingRate:number;surveyContent?:string;location?:string;concurrencyStamp:string;[key: string]: unknown;}})=> {return request({url: "/IoT/tag-config/tag/"+data.Id,method:"put",ownMethod: "undefined",data: data._body,baseURL:ismock ?"/mock": undefined})};
+const SwitchTag = (data:{gatewayAddress?:string;tagId:number;isEnabled:boolean;concurrencyStamp:string;[key: string]: unknown;})=> {return request({url: "/IoT/tag-config/switch-tag",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const GetAllTagPageList = (data:{TagId?:number;Name?:string;Address?:string;Location?:string;SurveyContent?:string;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IoT/tag-config/tag-page-list",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const SyncRemoteTagsToPlatformTags = (data:{groupId:number;_params:{gatewayAddress?:string;};})=> {return request({url: "/IoT/tag-config/sync-remote-tags-to-platform-tags/"+data.groupId,method:"post",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+const GetTagListByIds = (data:{tagIds?:Array<number>;})=> {return request({url: "/IoT/tag-config/tag-list-by-ids",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const WriteTagValue = (data:{TagId:number;_params:{Value?:string;};})=> {return request({url: "/IoT/tag-config/write-tag-value/"+data.TagId,method:"post",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+
+const apis = {GetPageList,TagDataTypeSelector,CreateTag,UpdateTag,SwitchTag,GetAllTagPageList,SyncRemoteTagsToPlatformTags,GetTagListByIds,WriteTagValue};
+export default apis;

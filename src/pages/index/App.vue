@@ -1,11 +1,12 @@
 <template>
-  <el-config-provider v-bind="_globalSettingStore.configProvider">
+  <el-config-provider v-bind="configProvider">
     <router-view />
   </el-config-provider>
 </template>
 <script lang="ts" setup>
 import { useGlobalSettingStore } from "./store";
-const _globalSettingStore = useGlobalSettingStore();
+const configProvider: Record<string, any> =
+  useGlobalSettingStore().configProvider;
 </script>
 <style lang="scss">
 #app {

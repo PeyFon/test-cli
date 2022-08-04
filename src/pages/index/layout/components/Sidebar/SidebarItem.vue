@@ -2,15 +2,15 @@
   <template v-if="theNoChild">
     <SidebarItemLink v-if="!route.meta?.hidden" :route="route">
       <el-menu-item
-        :index="route.redirect ? route.redirect : route.path"
-        :key="route.path"
+        :index="route.redirect ? route.redirect as string  : route.path"
+        :key="route.path + route?.id"
       >
+        <el-icon>
+          <template v-if="route.meta?.icon">
+            <component :is="route.meta?.icon"></component>
+          </template>
+        </el-icon>
         <template #title>
-          <el-icon>
-            <template v-if="route.meta?.icon">
-              <component :is="route.meta?.icon"></component>
-            </template>
-          </el-icon>
           <span>{{ route.meta?.title }}</span>
         </template>
       </el-menu-item>
@@ -18,7 +18,7 @@
   </template>
   <el-sub-menu
     v-if="!route.meta?.hidden && !theNoChild"
-    :index="route.redirect ? route.redirect : route.path"
+    :index="route.redirect ? route.redirect as string : route.path"
   >
     <template #title>
       <el-icon>
@@ -28,10 +28,9 @@
       </el-icon>
       <span>{{ route.meta?.title }}</span>
     </template>
-
     <SidebarItem
       v-for="child in route.children"
-      :key="child.path"
+      :key="child.path + child?.id"
       :route="child"
     />
   </el-sub-menu>
@@ -61,7 +60,6 @@ const showingChildNumber = computed(() => {
         return true;
       }
     });
-
     return showingChildren.length;
   }
   return 0;

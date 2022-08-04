@@ -1,0 +1,17 @@
+import {AwingIWSEquipmentOMMaintainCategory} from '../type';
+import request from "@/requests/interface";
+import { useGlobalSettingStore } from "@/store";
+const ismock = useGlobalSettingStore().isMock;
+
+const GetList = (data:{Code?:string;Name?:string;EquipmentName?:string;MaintainRespName?:string;PlanValidTimeStart?:string;PlanValidTimeEnd?:string;IsActive?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IWS/maintain-plan",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const Create = (data:{name:string;maintainRespId:string;maintainPlayerIds?:Array<string>;planValidTimeStart:string;planValidTimeEnd:string;firstTaskTime:string;regularNum:number;regularUnit?:string;taskDuration:number;taskDurationUnit?:string;overdueRemindTime:number;overdueRemindTimeUnit?:string;overdueRemindPusherIds?:Array<string>;isActive:boolean;equipmentId:string;maintainCategory:AwingIWSEquipmentOMMaintainCategory;maintainCost:number;maintainDescription?:string;[key: string]: unknown;})=> {return request({url: "/IWS/maintain-plan",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const Get = (data:{id:string;})=> {return request({url: "/IWS/maintain-plan/"+data.id,method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const Update = (data:{id:string;name:string;maintainRespId:string;maintainPlayerIds?:Array<string>;planValidTimeStart:string;planValidTimeEnd:string;firstTaskTime:string;regularNum:number;regularUnit?:string;taskDuration:number;taskDurationUnit?:string;overdueRemindTime:number;overdueRemindTimeUnit?:string;overdueRemindPusherIds?:Array<string>;isActive:boolean;equipmentId:string;maintainCategory:AwingIWSEquipmentOMMaintainCategory;maintainCost:number;maintainDescription?:string;concurrencyStamp?:string;[key: string]: unknown;})=> {return request({url: "/IWS/maintain-plan",method:"put",ownMethod: "undefined",data: data,baseURL:ismock ?"/mock": undefined})};
+const Delete = (data:{id:string;})=> {return request({url: "/IWS/maintain-plan/"+data.id,method:"delete",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const BatchDelete = (data:Array<string>)=> {return request({url: "/IWS/maintain-plan/batch-delete",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const BatchIsActive = (data:{_params:{isActive?:boolean;};_body:Array<string>})=> {return request({url: "/IWS/maintain-plan/batch-is-active?isActive="+data._params.isActive,method:"post",ownMethod: "body",data: data._body,baseURL:ismock ?"/mock": undefined})};
+const SelectEquipmentInfoBy = (data:{maxResultCount:number;skipCount:number;equipmentCode?:string;[key: string]: unknown;})=> {return request({url: "/IWS/maintain-plan/select-equipment-info-by",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const GetEquipment = (data:{equipmentId:string;})=> {return request({url: "/IWS/maintain-plan/equipment/"+data.equipmentId,method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+
+const apis = {GetList,Create,Get,Update,Delete,BatchDelete,BatchIsActive,SelectEquipmentInfoBy,GetEquipment};
+export default apis;

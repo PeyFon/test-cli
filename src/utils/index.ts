@@ -32,6 +32,24 @@ export const echoCascaderData = function (
   setData(data);
   return value;
 };
+/**
+ * 获取str出现的次数
+ * @param {string} target  要寻找的唯一值
+ * @param {string} str  字符串
+ * @return {number} str出现的次数
+ */
+export const searchStrOccurrence = function (
+  target: string,
+  str: string
+): number {
+  let sum = 0;
+  for (const key of str) {
+    if (key == target) {
+      sum++;
+    }
+  }
+  return sum;
+};
 
 //常用的VueUse
 //useDateFormat

@@ -9,5 +9,10 @@ module.exports = {
     //     camel2DashComponentName: false,
     //   },
     // ],
-  ]
+  ],
+  env: {
+    production: {
+      plugins: ["transform-remove-console"]
+    }
+  }
 };

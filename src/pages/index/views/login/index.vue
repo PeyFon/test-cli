@@ -39,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import Account from "@/api/account/Account";
 import { useGlobalUserStore, useRouterStore } from "../../store";
 
 const { proxy } = getCurrentInstance();
@@ -48,22 +49,26 @@ const _routerStore = useRouterStore();
 const _route = useRoute();
 const loading = ref(false);
 
-console.log(_route, "_route");
+// console.log(_route, "_route");
 
 // 判断是否有token
 onBeforeMount(async () => {
   if (_globalUserStore.token) {
     await _routerStore.initAsyncRoutes();
-    if (_routerStore.asyncRoutes[0].path) {
-      _router.replace({ path: _routerStore.asyncRoutes[0].path });
-    }
+    _routerStore.asyncRoutes[0].redirect
+      ? _router.push({
+          path: _routerStore.asyncRoutes[0].redirect.toString()
+        })
+      : _router.push({
+          path: _routerStore.asyncRoutes[0].path
+        });
   }
 });
 
 const formRef = ref(null);
 const form = reactive({
   name: process.env.NODE_ENV === "development" ? "admin" : "",
-  password: process.env.NODE_ENV === "development" ? "1q2w3E*" : ""
+  password: process.env.NODE_ENV === "development" ? "123456*" : ""
 });
 const rules = {
   name: {
@@ -76,21 +81,23 @@ const rules = {
   }
 };
 const login = () => {
-  formRef.value.validate(valid => {
-    loading.value = true;
-     _routerStore.initAsyncRoutes();
+  formRef.value.validate(async () => {
+    _globalUserStore.token = "456";
     _globalUserStore.user_name = "admin";
-    _globalUserStore.user_info = {
-      name: "admin",
-      id: 123
-    };
-    loading.value = false;
+    await _routerStore.initAsyncRoutes();
+    _routerStore.asyncRoutes.forEach(route => {
+      _router.addRoute(route);
+    });
     if (_route.query.redirect) {
       return _router.replace((_route.query.redirect as string) ?? "/");
     }
-    if (_routerStore.asyncRoutes[0].path) {
-      return _router.push({ path: _routerStore.asyncRoutes[0].path });
-    }
+    _routerStore.asyncRoutes[0].redirect
+      ? _router.push({
+          path: _routerStore.asyncRoutes[0].redirect.toString()
+        })
+      : _router.push({
+          path: _routerStore.asyncRoutes[0].path
+        });
   });
 };
 </script>

@@ -21,10 +21,14 @@ import "element-plus/theme-chalk/el-message.css";
 import "element-plus/theme-chalk/el-badge.css"; //当项目里使用了el-badge组件时可以去掉
 import "element-plus/theme-chalk/el-loading.css";
 
-import "element-plus/theme-chalk/dark/css-vars.css";
+//默认的暗黑样式
+// import "element-plus/theme-chalk/dark/css-vars.css";
 
 //v-loading的自动引入有问题，暂时自己注册个使用v-load
 import { vLoading } from "element-plus/es/components/loading/src/directive";
 app.directive("load", vLoading);
 
-app.use(piniaStore).use(router).mount("#app");
+app.use(piniaStore).use(router);
+router.isReady().then(() => {
+  app.mount("#app");
+});

@@ -23,7 +23,8 @@ export function findRouteByPath(
     return null;
   }
 }
-// 根据path找到对应的路由信息
+
+// 根据title找到对应的路由信息
 export function findRouteByTitle(
   title: string,
   routes: RouteRecordRaw[]
@@ -38,6 +39,37 @@ export function findRouteByTitle(
         routes[i].children.length > 0
       ) {
         res = findRouteByTitle(title, routes[i].children);
+        if (res) {
+          return res;
+        }
+      }
+    }
+    return null;
+  }
+}
+// 根据path找到对应的路由信息
+export function findRouteByRedirect(
+  path: string,
+  routes: RouteRecordRaw[]
+): RouteRecordRaw {
+  let res = routes.find((item: RouteRecordRaw) => {
+    if (
+      typeof item.redirect === "string" &&
+      item.redirect.includes(path) &&
+      item.path === path
+    ) {
+      return item;
+    }
+  });
+  if (res) {
+    return res;
+  } else {
+    for (let i = 0; i < routes.length; i++) {
+      if (
+        routes[i].children instanceof Array &&
+        routes[i].children.length > 0
+      ) {
+        res = findRouteByRedirect(path, routes[i].children);
         if (res) {
           return res;
         }

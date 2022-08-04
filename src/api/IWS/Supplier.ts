@@ -1,0 +1,27 @@
+import {AwingIWSPMFileDto} from '../type';
+import request from "@/requests/interface";
+import { useGlobalSettingStore } from "@/store";
+const ismock = useGlobalSettingStore().isMock;
+
+const GetManufacturerList = (data:{SupplierName?:string;Address?:string;Contacts?:string;PhoneNumber?:string;IsActive?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IWS/supplier/manufacturer-list",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const ExportManufacturer = (data:{SupplierName?:string;Address?:string;Contacts?:string;PhoneNumber?:string;IsActive?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IWS/supplier/export-manufacturer",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const CreateManufacturer = (data:{supplierName:string;uscc:string;address:string;contacts:string;phoneNumber:string;remark?:string;filesList?:Array<AwingIWSPMFileDto>;[key: string]: unknown;})=> {return request({url: "/IWS/supplier/manufacturer",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const UpdateManufacturer = (data:{id:string;_body:{supplierName:string;uscc:string;address:string;contacts:string;phoneNumber:string;remark?:string;filesList?:Array<AwingIWSPMFileDto>;[key: string]: unknown;}})=> {return request({url: "/IWS/supplier/"+data.id+"/manufacturer",method:"put",ownMethod: "undefined",data: data._body,baseURL:ismock ?"/mock": undefined})};
+const DeleteManufacturer = (data:{id:string;})=> {return request({url: "/IWS/supplier/"+data.id+"/manufacturer",method:"delete",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const UpdateManufacturerActive = (data:{id:string;_params:{active?:boolean;};})=> {return request({url: "/IWS/supplier/"+data.id+"/manufacturer-active",method:"put",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+const GetManufacturer = (data:{id:string;})=> {return request({url: "/IWS/supplier/"+data.id+"/manufacturer",method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const GetManufacturerEquipmentStat = (data:{id:string;_params:{EquipmentName?:string;SkipCount?:number;MaxResultCount?:number;};})=> {return request({url: "/IWS/supplier/"+data.id+"/manufacturer-equipment-stat",method:"get",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+const GetManufacturerSelect = ()=> {return request({url: "/IWS/supplier/manufacturer-select",method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const GetManufacturerByBrandId = (data:{brandId:string;})=> {return request({url: "/IWS/supplier/manufacturer-by-brand-id/"+data.brandId,method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const GetDealerList = (data:{SupplierName?:string;Address?:string;Contacts?:string;PhoneNumber?:string;IsActive?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IWS/supplier/dealer-list",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const ExportDealer = (data:{SupplierName?:string;Address?:string;Contacts?:string;PhoneNumber?:string;IsActive?:boolean;SkipCount?:number;MaxResultCount?:number;})=> {return request({url: "/IWS/supplier/export-dealer",method:"get",ownMethod: "undefined",params: data,baseURL:ismock ?"/mock": undefined})};
+const CreateDealer = (data:{supplierName:string;uscc:string;address:string;contacts:string;phoneNumber:string;remark?:string;filesList?:Array<AwingIWSPMFileDto>;[key: string]: unknown;})=> {return request({url: "/IWS/supplier/dealer",method:"post",ownMethod: "body",data: data,baseURL:ismock ?"/mock": undefined})};
+const UpdateDealer = (data:{id:string;_body:{supplierName:string;uscc:string;address:string;contacts:string;phoneNumber:string;remark?:string;filesList?:Array<AwingIWSPMFileDto>;[key: string]: unknown;}})=> {return request({url: "/IWS/supplier/"+data.id+"/dealer",method:"put",ownMethod: "undefined",data: data._body,baseURL:ismock ?"/mock": undefined})};
+const DeleteDealer = (data:{id:string;})=> {return request({url: "/IWS/supplier/"+data.id+"/dealer",method:"delete",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const UpdateDealerActive = (data:{id:string;_params:{active?:boolean;};})=> {return request({url: "/IWS/supplier/"+data.id+"/dealer-active",method:"put",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+const GetDealer = (data:{id:string;})=> {return request({url: "/IWS/supplier/"+data.id+"/dealer",method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+const GetDealerEquipmentStat = (data:{id:string;_params:{EquipmentName?:string;SkipCount?:number;MaxResultCount?:number;};})=> {return request({url: "/IWS/supplier/"+data.id+"/dealer-equipment-stat",method:"get",ownMethod: "undefined",params: data._params,baseURL:ismock ?"/mock": undefined})};
+const GetDealerSelect = ()=> {return request({url: "/IWS/supplier/dealer-select",method:"get",ownMethod: "undefined",baseURL:ismock ?"/mock": undefined})};
+
+const apis = {GetManufacturerList,ExportManufacturer,CreateManufacturer,UpdateManufacturer,DeleteManufacturer,UpdateManufacturerActive,GetManufacturer,GetManufacturerEquipmentStat,GetManufacturerSelect,GetManufacturerByBrandId,GetDealerList,ExportDealer,CreateDealer,UpdateDealer,DeleteDealer,UpdateDealerActive,GetDealer,GetDealerEquipmentStat,GetDealerSelect};
+export default apis;

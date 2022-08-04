@@ -13,9 +13,16 @@
     "suppressImplicitAnyIndexErrors": true,
     "sourceMap": true,
     "strictNullChecks": false,
+    "experimentalDecorators": true,
+    // "noImplicitAny": false,
 
     "baseUrl": ".",
-    "types": ["webpack-env", "unplugin-icons/types/vue"],
+    "types": [
+      "webpack-env",
+      "unplugin-icons/types/vue",
+      "element-plus/global",
+      "unplugin-vue-define-options"
+    ],
     "paths": {
       "@/*": ["src/*"]
     },
@@ -23,13 +30,17 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
+    "./services/index.d.ts",
+    "./src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.d.ts",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "src/types/**/*.ts"
+    "src/types/**/*.ts",
+    "src/types/**/*.d.ts",
+    "src/components/ElementPlugin/index.ts"
   ],
   "exclude": ["node_modules"]
 }
