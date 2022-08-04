@@ -1,6 +1,6 @@
 <template>
   <el-header style="padding: 0">
-    <Sidebar mode="horizontal" />
+    <Sidebar mode="horizontal" id="sidebar111"/>
     <!-- <el-container style="height: 100%">
       <el-main style="padding: 0">
       
